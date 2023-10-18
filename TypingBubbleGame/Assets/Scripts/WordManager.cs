@@ -7,34 +7,53 @@ using UnityEngine;
 public class WordManager : MonoBehaviour
 {
     public List<Word> words;
-    private bool hasActiveWord;
-    private Word activeWord;
-
+    public bool hasActiveWord;
+    public Word activeWord;
     public WordSpawner wordSpawner;
-    
+    public WordManager wordManager;
+    public int wrongCounter = 0;
+    public int outOfBoundsCounter;
+    public GameManager gameManager;
+    void Update()
+    {
+        // Check if the active word is out of bounds and remove it
+        if (activeWord.wordDisplay.isOutOfBounds)
+        {
+            hasActiveWord = false;
+            words.Remove(activeWord);
+            // Optionally, destroy the game object here if needed
+            // Destroy(activeWord.gameObject);
+        }
+    }
 
     public void AddWord()
     {
-        Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord());
-        Debug.Log(word.word);
+        Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(wordManager));
+
 
         words.Add(word);
     }
 
     public void TypeLetter(char letter)
     {
-        if(hasActiveWord)
+        if (hasActiveWord)
         {
-            if(activeWord.GetNextLetter() == letter)
+            if (activeWord.GetNextLetter() == letter)
             {
                 activeWord.TypeLetter();
             }
+            else
+            {
+                Damage();
+            }
+
+
         }
         else
         {
             foreach (var word in words)
             {
-                if(word.GetNextLetter() == letter)
+                if (word.GetNextLetter() == letter)
                 {
                     activeWord = word;
                     hasActiveWord = true;
@@ -43,11 +62,39 @@ public class WordManager : MonoBehaviour
                 }
             }
         }
-        //remove the word if finished typing the word
-        if(hasActiveWord && activeWord.WordTyped())
+
+        // Remove the word if it's finished typing the word
+        if (hasActiveWord && activeWord.WordTyped())
         {
             hasActiveWord = false;
             words.Remove(activeWord);
         }
     }
+
+
+    public void ActiveWordDestroyed()
+    {
+        hasActiveWord = false;
+    }
+
+
+
+
+    public void Damage()
+    {
+        if(gameManager.playerLife > 0)
+        {
+            gameManager.playerLife--;
+
+        }
+        else if(gameManager.playerLife <= 0)
+        {
+            Debug.Log("GameOver");
+            //show game over screen
+            
+        }
+        
+    }
+
+
 }

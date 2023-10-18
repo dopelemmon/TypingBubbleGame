@@ -5,7 +5,7 @@ using UnityEngine;
 public class WordTimer : MonoBehaviour
 {
     public WordManager wordManager;
-    public float delay = 1.5f;
+    public float delay = 2f;
     private float nextWordTime = 0f;
 
     void Update()

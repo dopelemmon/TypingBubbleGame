@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WordGenerator : MonoBehaviour
 {
-    private static string[] wordList = {   "apple", "banana", "cat", "dog", "elephant",
+    private static string[] wordList = {   "apple", "banana", "cat", "dog", "ego",
   "flower", "guitar", "happiness", "ice cream", "jump",
   "kite", "lemon", "monkey", "nest", "orange",
   "penguin", "queen", "rainbow", "sunshine", "tiger",
-  "umbrella", "violin", "watermelon", "xylophone", "yacht",
+  "umbrella", "violin", "melon", "phone", "yacht",
   "zebra", "balloon", "candle", "dolphin", "eagle",
   "firework", "giraffe", "honey", "island", "jellyfish",
   "kangaroo", "lighthouse", "moon", "ninja", "octopus",
