@@ -33,9 +33,11 @@ public class Word
     {
         bool wordTyped = (typeIndex >= word.Length);
         if(wordTyped)
-        {
+        {   
             wordDisplay.RemoveWord();
         }
         return wordTyped;
     }
+
+    
 }

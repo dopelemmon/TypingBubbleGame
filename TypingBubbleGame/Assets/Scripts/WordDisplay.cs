@@ -16,7 +16,7 @@ public class WordDisplay : MonoBehaviour
 
     public bool isOutOfBounds;
 
-    
+    public BurstBubble burstBubble;
 
     public void SetWord(string word)
     {
@@ -35,8 +35,9 @@ public class WordDisplay : MonoBehaviour
         {
             wordManager.ActiveWordDestroyed();
         }
-        Destroy(gameObject);
-        // Add bubble pop VFX
+        StartCoroutine(BurstAndRemoveWord());
+        
+        
     }
 
     void Update()
@@ -51,7 +52,13 @@ public class WordDisplay : MonoBehaviour
             Destroy(gameObject);
     
         }
+        
 
     }
+     public IEnumerator BurstAndRemoveWord()
+    {
+         yield return new WaitForSeconds(1.0f); // Adjust the duration as needed (1.0f means 1 second)
+         Destroy(gameObject);
+     }
 
 }

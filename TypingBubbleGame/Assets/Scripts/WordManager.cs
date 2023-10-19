@@ -15,10 +15,24 @@ public class WordManager : MonoBehaviour
     public int outOfBoundsCounter;
     public GameManager gameManager;
 
+    
+
     void Update()
     {
-
+        // if(wordSpawner.instantiatedGO.Count > 0)
+        // {
+        //     foreach (var item in wordSpawner.instantiatedGO)
+        //     {
+        //         if(item != null)
+        //         {
+        //             item.GetComponentInChildren<BurstBubble>();
+        //         }
+               
+        //     }
+        // }
+        
     }
+
     public void AddWord()
     {
         Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(wordManager));
@@ -69,7 +83,8 @@ public class WordManager : MonoBehaviour
         {
             hasActiveWord = false;
             words.Remove(activeWord);
-            
+            //StartCoroutine(activeWord.wordDisplay.BurstAndRemoveWord());
+            activeWord.wordDisplay.GetComponentInChildren<BurstBubble>().BurstBubbleAnim();
         }
     }
 
@@ -78,9 +93,6 @@ public class WordManager : MonoBehaviour
     {
         hasActiveWord = false;
     }
-
-
-
 
     public void Damage()
     {

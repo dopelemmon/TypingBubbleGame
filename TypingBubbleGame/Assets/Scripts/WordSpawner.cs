@@ -26,6 +26,8 @@ public class WordSpawner : MonoBehaviour
         GameObject wordBubbleObj = Instantiate(wordBubblePrefab, randomPos, Quaternion.identity, wordObj.transform);
 
         instantiatedGO.Add(wordObj);
+
+
         
         // Set the WordManager reference for the WordDisplay
         WordDisplay wordDisplay = wordObj.GetComponent<WordDisplay>();
@@ -48,6 +50,8 @@ public class WordSpawner : MonoBehaviour
             instantiatedGO.Clear();
         }
     }
+
+
 
     void Update()
     {
