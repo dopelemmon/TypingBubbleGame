@@ -14,22 +14,14 @@ public class WordManager : MonoBehaviour
     public int wrongCounter = 0;
     public int outOfBoundsCounter;
     public GameManager gameManager;
+
     void Update()
     {
-        // Check if the active word is out of bounds and remove it
-        if (activeWord.wordDisplay.isOutOfBounds)
-        {
-            hasActiveWord = false;
-            words.Remove(activeWord);
-            // Optionally, destroy the game object here if needed
-            // Destroy(activeWord.gameObject);
-        }
-    }
 
+    }
     public void AddWord()
     {
         Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(wordManager));
-
 
         words.Add(word);
     }
@@ -46,8 +38,6 @@ public class WordManager : MonoBehaviour
             {
                 Damage();
             }
-
-
         }
         else
         {
@@ -63,11 +53,23 @@ public class WordManager : MonoBehaviour
             }
         }
 
+        // Check if the active word is out of bounds and remove it
+        if (activeWord.wordDisplay.isOutOfBounds)
+        {
+            hasActiveWord = false;
+            words.Remove(activeWord);
+            gameManager.playerLife--;
+            // Optionally, destroy the game object here if needed
+            // Destroy(activeWord.gameObject);
+        }
+
+
         // Remove the word if it's finished typing the word
         if (hasActiveWord && activeWord.WordTyped())
         {
             hasActiveWord = false;
             words.Remove(activeWord);
+            
         }
     }
 
@@ -82,19 +84,16 @@ public class WordManager : MonoBehaviour
 
     public void Damage()
     {
-        if(gameManager.playerLife > 0)
+        if (gameManager.playerLife > 0)
         {
             gameManager.playerLife--;
 
         }
-        else if(gameManager.playerLife <= 0)
+        else if (gameManager.playerLife <= 0)
         {
             Debug.Log("GameOver");
             //show game over screen
-            
         }
-        
     }
-
 
 }

@@ -152,3 +152,4 @@ MonoBehaviour:
   _maxYPosition: 5
   wordManager: {fileID: 0}
   isOutOfBounds: 0
+  burstBubble: {fileID: -321625972005760094, guid: d39ed3c74aca201498fde88099c2fa5e, type: 3}

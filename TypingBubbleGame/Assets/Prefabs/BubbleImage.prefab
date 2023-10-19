@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 42802296036204453}
   - component: {fileID: 1800148147862470543}
   - component: {fileID: 3472515370946447808}
+  - component: {fileID: 3894596869119235251}
   m_Layer: 5
   m_Name: BubbleImage
   m_TagString: Untagged
@@ -75,3 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3894596869119235251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290171880765791694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82f9088816e5554194213faf49ba246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleImage: {fileID: 3472515370946447808}
+  burstedBubbleTexture: {fileID: 2800000, guid: c54d98e4abc1cf24c80600a0adac287c, type: 3}
+  originalBubbleTexture: {fileID: 2800000, guid: 9256b214747440648ac5b4daaabf73c9, type: 3}

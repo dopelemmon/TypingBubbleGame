@@ -15,7 +15,7 @@ public class WordSpawner : MonoBehaviour
     [SerializeField]
     float _spawnOrigin = -9.0f;
 
-    // public List<GameObject> instantiatedGO;
+    public List<GameObject> instantiatedGO;
 
     public WordDisplay SpawnWord(WordManager wordManager)
     {
@@ -25,7 +25,7 @@ public class WordSpawner : MonoBehaviour
         GameObject wordObj = Instantiate(wordPrefab, randomPos, Quaternion.identity, wordCanvas);
         GameObject wordBubbleObj = Instantiate(wordBubblePrefab, randomPos, Quaternion.identity, wordObj.transform);
 
-        // instantiatedGO.Add(wordObj);
+        instantiatedGO.Add(wordObj);
         
         // Set the WordManager reference for the WordDisplay
         WordDisplay wordDisplay = wordObj.GetComponent<WordDisplay>();
@@ -35,6 +35,18 @@ public class WordSpawner : MonoBehaviour
         }
 
         return wordDisplay;
+    }
+
+    public void DestroyAllPrefabs()
+    {
+        if(instantiatedGO.Count > 0)
+        {
+            for (int i = 0; i < instantiatedGO.Count; i++)
+            {
+                Destroy(instantiatedGO[i]);
+            }
+            instantiatedGO.Clear();
+        }
     }
 
     void Update()

@@ -29,18 +29,16 @@ public class WordDisplay : MonoBehaviour
         text.color = Color.red;
     }
 
-   public void RemoveWord()
-{
-    if (wordManager != null)
+    public void RemoveWord()
     {
-        wordManager.ActiveWordDestroyed();
+        if (wordManager != null)
+        {
+            wordManager.ActiveWordDestroyed();
+        }
+        Destroy(gameObject);
+        // Add bubble pop VFX
     }
-    Destroy(gameObject);
-    // Add bubble pop VFX
-}
 
-
-    
     void Update()
     {
         transform.Translate(0f, speed * Time.deltaTime, 0f);
@@ -49,8 +47,9 @@ public class WordDisplay : MonoBehaviour
         {
             isOutOfBounds = true;
             Debug.Log(isOutOfBounds);
+            wordManager.Damage();
             Destroy(gameObject);
-            
+    
         }
 
     }

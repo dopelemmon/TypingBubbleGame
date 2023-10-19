@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public WordManager wordManager;
+    public WordSpawner wordSpawner;
     public int playerLife = 3;
 
     public enum GameState {onGame, onPause, gameOver};
@@ -21,5 +24,14 @@ public class GameManager : MonoBehaviour
         {
             gameState = GameState.gameOver;
         }
+    }
+
+    public void StartOver()
+    {
+        playerLife = 3;
+        wordManager.words.Clear();
+        wordManager.activeWord = null;
+        wordManager.hasActiveWord = false;
+        gameState = GameState.onGame;
     }
 }
