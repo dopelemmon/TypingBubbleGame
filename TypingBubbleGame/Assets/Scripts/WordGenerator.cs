@@ -26,17 +26,16 @@ public class WordGenerator : MonoBehaviour
   "passionate", "fantasy", "whispered", "happiness", "magical",
   "mesmerize", "peaceful", "serenity", "mesmerizing", "spellbound"};
 
-  private static string[] hardWordList = {"Apotheosis", "Belligerent", "Cacophony", "Dichotomy", "Ephemeral",
-  "Filibuster", "Garrulous", "Hippopotomonstrosesquipedaliophobia", "Ineffable", "Juxtaposition",
-  "Kaleidoscope", "Labyrinthine", "Mellifluous", "Nefarious", "Obfuscate",
-  "Pernicious", "Quintessential", "Recalcitrant", "Sycophant", "Transmogrify",
-  "Ubiquitous", "Voracious", "Whimsical", "Xenophobe", "Yuletide",
-  "Zephyr", "Acrimonious", "Bacchanalian", "Cacophonous", "Diaphanous",
-  "Ebullient", "Facetious", "Garrulity", "Hapaxlegomenon", "Insuperable",
-  "Juxtaposition", "Kaleidoscopic", "Lugubrious", "Munificent", "Nebulous",
-  "Obstreperous", "Parsimonious", "Quixotical", "Rapacious", "Sanguine",
-  "Tenebrous", "Ubiquity", "Verisimilitude", "Wherewithal", "Xenodochial",
-  "Ylem", "Zeugma"};
+  private static string[] hardWordList = {  "Rainy Day", "Bright Moon", "Sweet Honey", "Green Grass", "Blue Sky",
+  "Happy Smile", "Cold Water", "Warm Sun", "Open Book", "Quiet Night",
+  "Big Heart", "True Love", "Hot Coffee", "New Beginnings", "Cool Breeze",
+  "Fresh Air", "Strong Coffee", "Lost Keys", "Golden Sun", "Silver Moon",
+  "Sweet Dreams", "Tall Tree", "Soft Pillow", "Red Apple", "Green Tea",
+  "White Snow", "Deep Ocean", "Brave Heart", "Sharp Knife", "Big Dog",
+  "Little Bird", "Happy Song", "Empty Glass", "Broken Heart", "Wise Owl",
+  "Lazy Cat", "Shiny Star", "Dark Night", "Warm Blanket", "Cool Shade",
+  "Fast Car", "Slow Motion", "Black Coffee", "Open Door", "Loud Music",
+  "Clear Sky", "Sweet Melody", "Lost Time", "Sunny Day", "Peaceful Mind" };
 
   public GameManager gameManager;
     public static string GetRandomWord(GameManager.GameDifficulty _difficulty)
