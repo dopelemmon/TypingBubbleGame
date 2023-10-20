@@ -16,14 +16,24 @@ public class MainMenuUIManager : MonoBehaviour
     bool isHowToPlayOpen;
 
     public GameObject introLogo;
-
-    bool showedLogo;
     
     public int howToPlayIndex = 0;
+    private int showedLogo; // 0 for false, 1 for true
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(IntroLogo());
+        showedLogo = PlayerPrefs.GetInt("ShowedLogo", 0); // Load the flag from PlayerPrefs
+
+        if (showedLogo == 0)
+        {
+            StartCoroutine(IntroLogo());
+        }
+        else
+        {
+            introLogo.SetActive(false);
+            videoBackground.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -65,6 +75,9 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void QuitButton()
     {
+        showedLogo = 0;
+        PlayerPrefs.SetInt("ShowedLogo", showedLogo);
+        PlayerPrefs.Save();
         Application.Quit();
     }
 
@@ -74,6 +87,8 @@ public class MainMenuUIManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         introLogo.SetActive(false);
         videoBackground.SetActive(true);
-
+        showedLogo = 1;
+        PlayerPrefs.SetInt("ShowedLogo", showedLogo);
+        PlayerPrefs.Save();
     }
 }
