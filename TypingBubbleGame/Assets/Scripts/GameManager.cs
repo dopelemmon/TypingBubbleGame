@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     public enum GameState {onGame, onPause, gameOver};
     public GameState gameState;
+
+    public enum GameDifficulty {Easy, Medium, Hard};
+    public GameDifficulty gameDifficulty;
     // Start is called before the first frame update
     void Start()
     {

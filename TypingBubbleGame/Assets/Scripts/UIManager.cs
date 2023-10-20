@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.UI;
+using UnityEngine.UI;
+using JetBrains.Annotations;
+using TMPro;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public GameManager gameManager;
     public WordSpawner wordSpawner;
     public List<GameObject> healthIcon;
     public GameObject gameOverPanel;
+    public TMP_Text congratulationsText;
     public GameObject lifePrefab;
     public GameObject settingsButton;
     public GameObject settingsPanel;
+    public GameObject selectDifficultyUI;
     public Transform lifePrefabParent;
+    public GameObject scoreInformation;
+
+    public int scoreValue = 0;
+    public TMP_Text scoreText;
+    bool isSelectingDifficulty = true;
     // Update is called once per frame
     void Start()
     {
@@ -34,6 +44,16 @@ public class UIManager : MonoBehaviour
                 break;
                 
         }
+
+        if(isSelectingDifficulty)
+        {
+            Time.timeScale = 0f;
+        }
+        else{
+            Time.timeScale = 1f;
+        }
+
+        scoreText.text = scoreValue.ToString();
     }
     public void ShowLifeUI()
     {
@@ -60,6 +80,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
         gameOverPanel.SetActive(true);
         settingsButton.SetActive(false);
+        congratulationsText.text = ("Congrats you've completed, " + scoreValue + " words");
     }
 
     public void RestartGame()
@@ -68,6 +89,8 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         gameOverPanel.SetActive(false);
         settingsButton.SetActive(true);
+        //reset the score
+        scoreValue = 0;
 
         while (healthIcon.Count < gameManager.playerLife)
         {
@@ -90,6 +113,41 @@ public class UIManager : MonoBehaviour
         settingsButton.SetActive(true);
         Time.timeScale = 1f;
 
+    }
+
+    public void SetDifficultyEasy()
+    {
+        gameManager.gameDifficulty = GameManager.GameDifficulty.Easy;
+        selectDifficultyUI.SetActive(false);
+        isSelectingDifficulty = false;
+        OnGameUI();
+
+    }
+
+    public void SetDifficultyMedium()
+    {
+        gameManager.gameDifficulty = GameManager.GameDifficulty.Medium;
+        selectDifficultyUI.SetActive(false);
+        isSelectingDifficulty = false;
+        OnGameUI();
+    }
+    public void SetDifficultyHard()
+    {
+        gameManager.gameDifficulty = GameManager.GameDifficulty.Hard;
+        isSelectingDifficulty = false;
+        selectDifficultyUI.SetActive(false);
+        OnGameUI();
+    }
+
+    public void OnGameUI()
+    {
+        scoreInformation.SetActive(true);
+        settingsButton.SetActive(true);
+    }
+
+    public void ExitButton()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
     
 }

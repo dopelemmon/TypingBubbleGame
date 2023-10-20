@@ -15,6 +15,8 @@ public class WordManager : MonoBehaviour
     public int outOfBoundsCounter;
     public GameManager gameManager;
 
+    public UIManager uIManager;
+
     
 
     void Update()
@@ -35,7 +37,7 @@ public class WordManager : MonoBehaviour
 
     public void AddWord()
     {
-        Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(wordManager));
+        Word word = new Word(WordGenerator.GetRandomWord(gameManager.gameDifficulty), wordSpawner.SpawnWord(wordManager));
 
         words.Add(word);
     }
@@ -85,6 +87,8 @@ public class WordManager : MonoBehaviour
             words.Remove(activeWord);
             //StartCoroutine(activeWord.wordDisplay.BurstAndRemoveWord());
             activeWord.wordDisplay.GetComponentInChildren<BurstBubble>().BurstBubbleAnim();
+            uIManager.scoreValue ++;
+            
         }
     }
 
